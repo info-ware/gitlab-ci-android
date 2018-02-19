@@ -67,6 +67,7 @@ RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/pac
 
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
+RUN mkdir scripts
 ADD get-release-notes.sh /scripts
 RUN chmod +x /scripts/get-release-notes.sh
 
