@@ -6,7 +6,7 @@
 #
 
 FROM ubuntu:17.10
-MAINTAINER Jan Grewe <jan@faked.org>
+MAINTAINER infoware <github@infoware.de>
 
 
 ENV ANDROID_NDK_HOME /opt/android-ndk
@@ -66,6 +66,10 @@ RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/pac
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
 
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
+
+ADD get-release-notes.sh /scripts
+RUN chmod +x /scripts/get-release-notes.sh
+
 
 # ------------------------------------------------------
 # --- Android NDK
