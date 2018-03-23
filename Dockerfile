@@ -1,8 +1,7 @@
 #
-# GitLab CI: Android v0.2
+# GitLab CI: Android v0.1
 #
-# https://hub.docker.com/r/jangrewe/gitlab-ci-android/
-# https://git.faked.org/jan/gitlab-ci-android
+# https://hub.docker.com/r/infoware/gitlab-ci-android/
 #
 
 FROM ubuntu:17.10
