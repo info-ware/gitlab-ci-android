@@ -17,6 +17,15 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
+
+
+#ADB RSA HASH - https://github.com/sorccu/docker-adb/blob/master/Dockerfile
+# Set up insecure default key
+RUN mkdir -m 0750 ~/.android
+ADD files/insecure_shared_adbkey ~/.android/adbkey
+ADD files/insecure_shared_adbkey.pub ~/.android/adbkey.pub
+
+
 RUN apt-get -qq update && \
     apt-get install -qqy --no-install-recommends \
       bzip2 \
@@ -93,10 +102,4 @@ RUN rm -rf /opt/android-ndk-tmp
 ENV PATH ${PATH}:${ANDROID_NDK_HOME}
 
 
-#ADB RSA HASH - https://github.com/sorccu/docker-adb/blob/master/Dockerfile
-
-# Set up insecure default key
-RUN mkdir -m 0750 /root/.android
-ADD files/insecure_shared_adbkey /root/.android/adbkey
-ADD files/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
