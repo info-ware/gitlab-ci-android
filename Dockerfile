@@ -21,9 +21,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 #ADB RSA HASH - https://github.com/sorccu/docker-adb/blob/master/Dockerfile
 # Set up insecure default key
-RUN mkdir -m 0750 ~/.android
-ADD files/insecure_shared_adbkey ~/.android/adbkey
-ADD files/insecure_shared_adbkey.pub ~/.android/adbkey.pub
+RUN mkdir -m 0750 /root/.android
+ADD files/insecure_shared_adbkey /root/.android/adbkey
+ADD files/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
 
 RUN apt-get -qq update && \
