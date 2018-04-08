@@ -41,6 +41,7 @@ RUN apt-get -qq update && \
       unzip \
       openssh-client \
       sshpass \
+      ruby \
       wget \
 	  build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -81,6 +82,10 @@ RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 RUN mkdir scripts
 ADD get-release-notes.sh /scripts
 RUN chmod +x /scripts/get-release-notes.sh
+ADD adb-all.sh /scripts
+RUN chmod +x /scripts/adb-all.sh
+ADD lint-up.rb /scripts
+
 
 
 # ------------------------------------------------------
