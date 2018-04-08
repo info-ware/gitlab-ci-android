@@ -86,6 +86,10 @@ ADD adb-all.sh /scripts
 RUN chmod +x /scripts/adb-all.sh
 ADD lint-up.rb /scripts
 
+# ----------------------------------------------------
+# ---- fastlane
+RUN gem install fastlane \
+    && gem install bundler
 
 
 # ------------------------------------------------------
