@@ -43,7 +43,7 @@ RUN apt-get -qq update && \
       sshpass \
       ruby \
       wget \
-	  build-essential \
+      build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
@@ -59,6 +59,15 @@ RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* 
 	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.UTF-8
 
+# ----------------------------------------------------
+# ---- fastlane
+RUN gem update
+
+RUN gem install fastlane \
+    && gem install bundler
+
+
+# Android SDK
 
 
 RUN curl -s https://dl.google.com/android/repository/sdk-tools-linux-${VERSION_SDK_TOOLS}.zip > /sdk.zip && \
@@ -86,10 +95,6 @@ ADD adb-all.sh /scripts
 RUN chmod +x /scripts/adb-all.sh
 ADD lint-up.rb /scripts
 
-# ----------------------------------------------------
-# ---- fastlane
-#RUN gem install fastlane \
-#    && gem install bundler
 
 
 # ------------------------------------------------------
