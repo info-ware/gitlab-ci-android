@@ -88,8 +88,8 @@ ADD lint-up.rb /scripts
 
 # ----------------------------------------------------
 # ---- fastlane
-RUN gem install fastlane \
-    && gem install bundler
+#RUN gem install fastlane \
+#    && gem install bundler
 
 
 # ------------------------------------------------------
