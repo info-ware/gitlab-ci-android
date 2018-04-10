@@ -93,6 +93,8 @@ ADD get-release-notes.sh /scripts
 RUN chmod +x /scripts/get-release-notes.sh
 ADD adb-all.sh /scripts
 RUN chmod +x /scripts/adb-all.sh
+ADD compare_files.sh /scripts
+RUN chmod +x /scripts/compare_files.sh
 ADD lint-up.rb /scripts
 
 
