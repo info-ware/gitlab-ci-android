@@ -42,6 +42,7 @@ RUN apt-get -qq update && \
       openssh-client \
       sshpass \
       ruby \
+      rubygems-integration \
       wget \
       build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
