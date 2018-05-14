@@ -62,10 +62,10 @@ ENV LANG en_US.UTF-8
 
 # ----------------------------------------------------
 # ---- fastlane
-RUN gem update
-
-RUN gem install fastlane \
-    && gem install bundler
+#RUN gem update
+#
+#RUN gem install fastlane \
+#    && gem install bundler
 
 
 # Android SDK
