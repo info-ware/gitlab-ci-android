@@ -41,6 +41,7 @@ RUN apt-get -qq update && \
       unzip \
       openssh-client \
       sshpass \
+      lftp \
       ruby \
       rubygems-integration \
       wget \
