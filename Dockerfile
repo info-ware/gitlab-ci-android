@@ -42,8 +42,9 @@ RUN apt-get -qq update && \
       openssh-client \
       sshpass \
       lftp \
-      ruby \
-      rubygems-integration \
+      doxygen \
+      doxygen-latex \
+      graphviz \
       wget \
       build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -60,14 +61,6 @@ RUN rm -f /etc/ssl/certs/java/cacerts; \
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
 	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.UTF-8
-
-# ----------------------------------------------------
-# ---- fastlane
-#RUN gem update
-#
-#RUN gem install fastlane \
-#    && gem install bundler
-
 
 # Android SDK
 
