@@ -47,6 +47,7 @@ RUN apt-get -qq update && \
       graphviz \
       wget \
       build-essential \
+      maven \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
