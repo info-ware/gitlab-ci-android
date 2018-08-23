@@ -7,25 +7,26 @@
 FROM ubuntu:17.10
 MAINTAINER infoware <github@infoware.de>
 
-
-ENV ANDROID_NDK_HOME /opt/android-ndk
+# must be updated in case of new versions
 ENV ANDROID_NDK_VERSION r16b
 
+# must be updated in case of new versions
 ENV VERSION_SDK_TOOLS "4333796"
 
+ENV ANDROID_NDK_HOME /opt/android-ndk
 ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-
-
+# Special files to have always the same debug certificates otherwise they might be different for each running docker
+# which makes it more difficult to start automatic tests
 #ADB RSA HASH - https://github.com/sorccu/docker-adb/blob/master/Dockerfile
 # Set up insecure default key
 RUN mkdir -m 0750 /root/.android
 ADD files/insecure_shared_adbkey /root/.android/adbkey
 ADD files/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
-
+# install all needed linux packges
 RUN apt-get -qq update && \
     apt-get install -qqy --no-install-recommends \
       bzip2 \
@@ -63,9 +64,10 @@ RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* 
 	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.UTF-8
 
+###################################
 # Android SDK
 
-
+# Download current SDK tools
 RUN curl -s https://dl.google.com/android/repository/sdk-tools-linux-${VERSION_SDK_TOOLS}.zip > /sdk.zip && \
     unzip /sdk.zip -d /sdk && \
     rm -v /sdk.zip
@@ -82,6 +84,7 @@ RUN mkdir -p /root/.android && \
 RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
 
+# accept all licences
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 RUN mkdir scripts
