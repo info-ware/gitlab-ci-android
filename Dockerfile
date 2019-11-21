@@ -48,6 +48,8 @@ RUN apt-get -qq update && \
       graphviz \
       wget \
       build-essential \
+      ccache \
+      joe \
       maven \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
